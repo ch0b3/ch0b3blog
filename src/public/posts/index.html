@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>ちょうべえブログ</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.100.1" />
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+      <link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="ちょうべえブログ" />
+      <link href="/posts/index.xml" rel="feed" type="application/rss+xml" title="ちょうべえブログ" />
+      
+    
+    
+    <meta property="og:title" content="Posts" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://localhost:1313/posts/" />
+
+<meta itemprop="name" content="Posts">
+<meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Posts"/>
+<meta name="twitter:description" content=""/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+  <header>
+    <div class="pb3-m pb6-l bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        ちょうべえブログ
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          Posts
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <article class="pa3 pa4-ns nested-copy-line-height">
+    <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray"></section>
+    <section class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/ddd2/" class="link black dim">
+        ドメイン駆動設計 モデリング/実践ガイド 備忘録②
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      第二章　モデリングから実装まで ドメインモデリング ユースケース図 UMLで定義されている「ユーザーの要求に対してシステムの振る舞いを定義する図」
+アクターが「〇〇を✕✕する」という形式で記述する。
+この中でドメインモデリング図の作成スコープを決めていく。
+なぜユースケース図をまず作成するのか。 ユースケースがわからないとどのようなモデルを作成すればいいかわからないから。
+「作業者として自分のタスクを管理したい」のか「管理者として、複数管理者のタスクを管理したい」のか。
+それによって、「タスク」のドメインモデルは違うものになる。
+ドメインモデリング図作成スコープを決める目的 なぜ一度定義したユースケース図の中でドメインモデル図作成のスコープを決めるのか。
+ドメインモデル図を作成していると色々な要素が浮かんできて、議論が広がってしまう。
+それを範囲を狭めることで限られた時間内で成果を出せるようにするため。
+ドメインモデル図 メソッドは書かず、オブジェクトの属性を書く ルール/制約を吹き出しに書く オブジェクト同士の関連を示す 多重度を定義 集約の範囲を定義 理解を促進するために、具体例などを書いても良い ルール/制約の記述方法 基本的には吹き出しに箇条書きでOK。
+状態遷移もルール/制約の一つと捉えることができるので、状態遷移図を書くのも有効。
+ドメインモデルの実装 ドメインモデル貧血症の問題点 不整合なデータをいくらでも作ることができてしまう 仕様を追いかけるのに、多くのクラスをコード参照から追う必要がある ドメイン知識を表現した実装 ドメイン知識をドメイン層に委譲する。
+コンストラクタでインスタンス生成時の状態を定義する ルール/制約をドメイン層に記述する ユースケース層ではどのように実装するか(How)は隠蔽され、何をしたいか(What)だけ書く 常に正しいインスタンスしか存在させないドメイン層オブジェクト設計の基本方針 どのタイミングで永続化してもデータの整合性が保証されるようにする。
+生成条件の強制
+コンストラクタまたはファクトリーメソッドを経由して生成する ミューテーション条件の強制
+セッターは外部公開しない 正しいミューテーションを起こすメソッドのみ外部公開する Q&amp;A ユビキタス言語の管理方法 
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/ddd1/" class="link black dim">
+        ドメイン駆動設計 モデリング/実践ガイド 備忘録①
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      第一章 DDD概要 良いモデリングを作る ドメインエキスパートと会話する 開発者の部分的な理解では不十分。
+得られた知識をモデルに還元する 最初からモデルは完成しない、短いサイクルで徐々に改善する。
+モデルの継続的改善 ユビキタス言語 モデル内の言葉を「会話、ドキュメント、コード」で統一する。
+言葉を変換する際に発生する認識のズレを無くすために有効。
+モデルを直接表現するコード モデルとコードの表現をできるだけ近づける。
+モデルの表現を抽出できるように、UIやデータベースとのやり取りはできるだけ隔離したい。
+戦術的設計パターンとモデリング エンティティやリポジトリなどの戦術的設計パターンだけを取り入れる。
+-&gt;軽量DDD
+軽量DDDではモデリングをしない。
+ただ、戦術的設計パターンとモデリングは同時に着手できる。
+重要な考え方 課題ドリブン ルール &lt; 課題
+何を目的に導入するかをはっきりさせる。
+小さく初めて、小さく失敗する １回のモデリング作業だけで終わらせることは不可能。
+小さく試行錯誤のサイクルを繰り返すことで少しづつ成功体験が積まれていく。
+DDDの向き・不向き DDDは複雑なドメインを解決するプロセス。
+モデリングを中心としたアプローチが有効な場合は向いているが、必要ない場合は実装上のオーバーヘッドが大きいのでおすすめしない。
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+    </section></article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://localhost:1313" >
+    &copy;  ちょうべえブログ 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

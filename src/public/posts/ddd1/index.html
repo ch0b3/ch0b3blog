@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>ドメイン駆動設計 モデリング/実践ガイド 備忘録① | ちょうべえブログ</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="第一章 DDD概要 良いモデリングを作る ドメインエキスパートと会話する 開発者の部分的な理解では不十分。
+得られた知識をモデルに還元する 最初からモデルは完成しない、短いサイクルで徐々に改善する。
+モデルの継続的改善 ユビキタス言語 モデル内の言葉を「会話、ドキュメント、コード」で統一する。
+言葉を変換する際に発生する認識のズレを無くすために有効。
+モデルを直接表現するコード モデルとコードの表現をできるだけ近づける。
+モデルの表現を抽出できるように、UIやデータベースとのやり取りはできるだけ隔離したい。
+戦術的設計パターンとモデリング エンティティやリポジトリなどの戦術的設計パターンだけを取り入れる。
+-&gt;軽量DDD
+軽量DDDではモデリングをしない。
+ただ、戦術的設計パターンとモデリングは同時に着手できる。
+重要な考え方 課題ドリブン ルール &lt; 課題
+何を目的に導入するかをはっきりさせる。
+小さく初めて、小さく失敗する １回のモデリング作業だけで終わらせることは不可能。
+小さく試行錯誤のサイクルを繰り返すことで少しづつ成功体験が積まれていく。
+DDDの向き・不向き DDDは複雑なドメインを解決するプロセス。
+モデリングを中心としたアプローチが有効な場合は向いているが、必要ない場合は実装上のオーバーヘッドが大きいのでおすすめしない。">
+    <meta name="generator" content="Hugo 0.100.1" />
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="ドメイン駆動設計 モデリング/実践ガイド 備忘録①" />
+<meta property="og:description" content="第一章 DDD概要 良いモデリングを作る ドメインエキスパートと会話する 開発者の部分的な理解では不十分。
+得られた知識をモデルに還元する 最初からモデルは完成しない、短いサイクルで徐々に改善する。
+モデルの継続的改善 ユビキタス言語 モデル内の言葉を「会話、ドキュメント、コード」で統一する。
+言葉を変換する際に発生する認識のズレを無くすために有効。
+モデルを直接表現するコード モデルとコードの表現をできるだけ近づける。
+モデルの表現を抽出できるように、UIやデータベースとのやり取りはできるだけ隔離したい。
+戦術的設計パターンとモデリング エンティティやリポジトリなどの戦術的設計パターンだけを取り入れる。
+-&gt;軽量DDD
+軽量DDDではモデリングをしない。
+ただ、戦術的設計パターンとモデリングは同時に着手できる。
+重要な考え方 課題ドリブン ルール &lt; 課題
+何を目的に導入するかをはっきりさせる。
+小さく初めて、小さく失敗する １回のモデリング作業だけで終わらせることは不可能。
+小さく試行錯誤のサイクルを繰り返すことで少しづつ成功体験が積まれていく。
+DDDの向き・不向き DDDは複雑なドメインを解決するプロセス。
+モデリングを中心としたアプローチが有効な場合は向いているが、必要ない場合は実装上のオーバーヘッドが大きいのでおすすめしない。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/posts/ddd1/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-08T23:29:50+09:00" />
+<meta property="article:modified_time" content="2022-06-08T23:29:50+09:00" />
+
+<meta itemprop="name" content="ドメイン駆動設計 モデリング/実践ガイド 備忘録①">
+<meta itemprop="description" content="第一章 DDD概要 良いモデリングを作る ドメインエキスパートと会話する 開発者の部分的な理解では不十分。
+得られた知識をモデルに還元する 最初からモデルは完成しない、短いサイクルで徐々に改善する。
+モデルの継続的改善 ユビキタス言語 モデル内の言葉を「会話、ドキュメント、コード」で統一する。
+言葉を変換する際に発生する認識のズレを無くすために有効。
+モデルを直接表現するコード モデルとコードの表現をできるだけ近づける。
+モデルの表現を抽出できるように、UIやデータベースとのやり取りはできるだけ隔離したい。
+戦術的設計パターンとモデリング エンティティやリポジトリなどの戦術的設計パターンだけを取り入れる。
+-&gt;軽量DDD
+軽量DDDではモデリングをしない。
+ただ、戦術的設計パターンとモデリングは同時に着手できる。
+重要な考え方 課題ドリブン ルール &lt; 課題
+何を目的に導入するかをはっきりさせる。
+小さく初めて、小さく失敗する １回のモデリング作業だけで終わらせることは不可能。
+小さく試行錯誤のサイクルを繰り返すことで少しづつ成功体験が積まれていく。
+DDDの向き・不向き DDDは複雑なドメインを解決するプロセス。
+モデリングを中心としたアプローチが有効な場合は向いているが、必要ない場合は実装上のオーバーヘッドが大きいのでおすすめしない。"><meta itemprop="datePublished" content="2022-06-08T23:29:50+09:00" />
+<meta itemprop="dateModified" content="2022-06-08T23:29:50+09:00" />
+<meta itemprop="wordCount" content="31">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ドメイン駆動設計 モデリング/実践ガイド 備忘録①"/>
+<meta name="twitter:description" content="第一章 DDD概要 良いモデリングを作る ドメインエキスパートと会話する 開発者の部分的な理解では不十分。
+得られた知識をモデルに還元する 最初からモデルは完成しない、短いサイクルで徐々に改善する。
+モデルの継続的改善 ユビキタス言語 モデル内の言葉を「会話、ドキュメント、コード」で統一する。
+言葉を変換する際に発生する認識のズレを無くすために有効。
+モデルを直接表現するコード モデルとコードの表現をできるだけ近づける。
+モデルの表現を抽出できるように、UIやデータベースとのやり取りはできるだけ隔離したい。
+戦術的設計パターンとモデリング エンティティやリポジトリなどの戦術的設計パターンだけを取り入れる。
+-&gt;軽量DDD
+軽量DDDではモデリングをしない。
+ただ、戦術的設計パターンとモデリングは同時に着手できる。
+重要な考え方 課題ドリブン ルール &lt; 課題
+何を目的に導入するかをはっきりさせる。
+小さく初めて、小さく失敗する １回のモデリング作業だけで終わらせることは不可能。
+小さく試行錯誤のサイクルを繰り返すことで少しづつ成功体験が積まれていく。
+DDDの向き・不向き DDDは複雑なドメインを解決するプロセス。
+モデリングを中心としたアプローチが有効な場合は向いているが、必要ない場合は実装上のオーバーヘッドが大きいのでおすすめしない。"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  
+  
+  <header class="cover bg-top" style="background-image: url('http://localhost:1313/images/mondainai.jpg');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        ちょうべえブログ
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <h1 class="f2 f1-l fw2 white-90 mb0 lh-title">ドメイン駆動設計 モデリング/実践ガイド 備忘録①</h1>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">ドメイン駆動設計 モデリング/実践ガイド 備忘録①</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2022-06-08T23:29:50+09:00">June 8, 2022</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="第一章-ddd概要">第一章 DDD概要</h1>
+<h2 id="良いモデリングを作る">良いモデリングを作る</h2>
+<h3 id="ドメインエキスパートと会話する">ドメインエキスパートと会話する</h3>
+<p>開発者の部分的な理解では不十分。</p>
+<h3 id="得られた知識をモデルに還元する">得られた知識をモデルに還元する</h3>
+<p>最初からモデルは完成しない、短いサイクルで徐々に改善する。</p>
+<h2 id="モデルの継続的改善">モデルの継続的改善</h2>
+<h3 id="ユビキタス言語">ユビキタス言語</h3>
+<p>モデル内の言葉を「会話、ドキュメント、コード」で統一する。<br>
+言葉を変換する際に発生する認識のズレを無くすために有効。</p>
+<h3 id="モデルを直接表現するコード">モデルを直接表現するコード</h3>
+<p>モデルとコードの表現をできるだけ近づける。<br>
+モデルの表現を抽出できるように、UIやデータベースとのやり取りはできるだけ隔離したい。</p>
+<h3 id="戦術的設計パターンとモデリング">戦術的設計パターンとモデリング</h3>
+<p>エンティティやリポジトリなどの戦術的設計パターンだけを取り入れる。<br>
+-&gt;軽量DDD</p>
+<p>軽量DDDではモデリングをしない。<br>
+ただ、戦術的設計パターンとモデリングは同時に着手できる。</p>
+<h2 id="重要な考え方">重要な考え方</h2>
+<h3 id="課題ドリブン">課題ドリブン</h3>
+<p>ルール &lt; 課題</p>
+<p>何を目的に導入するかをはっきりさせる。</p>
+<h3 id="小さく初めて小さく失敗する">小さく初めて、小さく失敗する</h3>
+<p>１回のモデリング作業だけで終わらせることは不可能。<br>
+小さく試行錯誤のサイクルを繰り返すことで少しづつ成功体験が積まれていく。</p>
+<h3 id="dddの向き不向き">DDDの向き・不向き</h3>
+<p>DDDは複雑なドメインを解決するプロセス。<br>
+モデリングを中心としたアプローチが有効な場合は向いているが、必要ない場合は実装上のオーバーヘッドが大きいのでおすすめしない。</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://localhost:1313" >
+    &copy;  ちょうべえブログ 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
