@@ -1,7 +1,7 @@
 ---
 title: "ドメイン駆動設計 モデリング/実践ガイド 備忘録①"
 date: 2022-06-08T23:29:50+09:00
-featured_image:  '/images/header.jpg'
+featured_image:  '/images/header.png'
 draft: true
 ---
 
