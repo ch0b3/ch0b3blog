@@ -22,3 +22,5 @@ access_logの右に書いている箇所がaccess.logの場所にあたる。
 
 ```
 $ less access_log.main.20220911.gz | grep posting/map | awk '{print $1}' | sort | uniq -c | sort -rn
+```
+
