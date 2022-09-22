@@ -20,7 +20,9 @@ $ less /etc/nginx/nginx.conf
 ```
 access_logの右に書いている箇所がaccess.logの場所にあたる。
 
+以下のコマンドでIPアドレス毎のリクエスト数が分かる。[参考](https://noauto-nolife.com/post/nginx-log-check-by-awk/)
+
 ```
-$ less access_log.main.20220911.gz | grep posting/map | awk '{print $1}' | sort | uniq -c | sort -rn
+$ less access.log | grep posting/map | awk '{print $1}' | sort | uniq -c | sort -rn
 ```
 
